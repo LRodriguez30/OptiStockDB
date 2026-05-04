@@ -14,12 +14,12 @@ namespace OptiStock.Schemas
         public required string Tipo { get; set; }
         public required string Titulo { get; set; }
         public required string Mensaje { get; set; }
-        public required decimal Prioridad { get; set; }
-        public required decimal Modulo { get; set; }
+        public required string Prioridad { get; set; }
+        public required string Modulo { get; set; }
         public required string IdReferencia { get; set; }
         public required bool Leida { get; set; } = false;
-        public DateTime FechaCreacion { get; set; } = DateTime.UtcNow.ToString("o") is string fecha ? DateTime.Parse(fecha) : DateTime.UtcNow;
-        public DateTime FechaLectura { get; set; }
+        public DateTime FechaCreacion { get; set; } = DateTime.UtcNow;
+        public DateTime? FechaLectura { get; set; }
         [BsonRepresentation(BsonType.String)]
         public required Guid UsuarioDestino { get; set; }
         public Acciones? Acciones { get; set; }

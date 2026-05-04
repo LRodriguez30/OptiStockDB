@@ -21,7 +21,7 @@ namespace OptiStock.Schemas.Dtos.HistorialMovimientos
         public required int NumeroDocumento { get; set; }
         [BsonRepresentation(BsonType.String)]
         public required Guid IdUsuario { get; set; }
-        public DateTime FechaMovimiento { get; set; } = DateTime.UtcNow.ToString("o") is string fecha ? DateTime.Parse(fecha) : DateTime.UtcNow;
+        public DateTime FechaMovimiento { get; set; } = DateTime.UtcNow;
         public string? Observaciones { get; set; }
     }
 }

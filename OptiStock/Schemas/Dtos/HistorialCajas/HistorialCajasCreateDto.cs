@@ -20,7 +20,7 @@ namespace OptiStock.Schemas.Dtos.HistorialCajas
         public required decimal SaldoNuevo { get; set; }
         [BsonRepresentation(BsonType.String)]
         public required Guid IdOperacion { get; set; }
-        public DateTime FechaCambio { get; set; } = DateTime.UtcNow.ToString("o") is string fecha ? DateTime.Parse(fecha) : DateTime.UtcNow;
+        public DateTime FechaCambio { get; set; } = DateTime.UtcNow;
         public string? Observaciones { get; set; }
     }
 }

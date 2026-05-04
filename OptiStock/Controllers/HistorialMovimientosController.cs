@@ -27,6 +27,9 @@ namespace OptiStock.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
+            if (!MongoDB.Bson.ObjectId.TryParse(id, out _))
+                return BadRequest("Id inválido.");
+
             var registro = await _histMovimientosRepo.GetByIdAsync(id);
             if (registro is null)
             {
@@ -52,6 +55,9 @@ namespace OptiStock.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, HistorialMovimientosUpdateDto dto)
         {
+            if (!MongoDB.Bson.ObjectId.TryParse(id, out _))
+                return BadRequest("Id inválido.");
+
             var existing = await _histMovimientosRepo.GetByIdAsync(id);
 
             if (existing is null)
@@ -65,6 +71,9 @@ namespace OptiStock.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
+            if (!MongoDB.Bson.ObjectId.TryParse(id, out _))
+                return BadRequest("Id inválido.");
+
             var existing = await _histMovimientosRepo.GetByIdAsync(id);
 
             if (existing is null)

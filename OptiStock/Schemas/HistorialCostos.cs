@@ -23,6 +23,6 @@ namespace OptiStock.Schemas
         [BsonRepresentation(BsonType.String)]
         public required Guid IdUsuario { get; set; }
         public string? NombreUsuario { get; set; }
-        public DateTime FechaCambio { get; set; } = DateTime.UtcNow.ToString("o") is string fecha ? DateTime.Parse(fecha) : DateTime.UtcNow;
+        public DateTime FechaCambio { get; set; } = DateTime.UtcNow;
     }
 }

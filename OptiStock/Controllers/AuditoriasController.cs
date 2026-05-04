@@ -27,12 +27,13 @@ namespace OptiStock.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
+            if (!MongoDB.Bson.ObjectId.TryParse(id, out _))
+                return BadRequest("Id inválido.");
+
             var registro = await _auditoriasRepo.GetByIdAsync(id);
 
             if (registro is null)
-            {
                 return NotFound();
-            }
 
             return Ok(registro);
         }
@@ -53,12 +54,16 @@ namespace OptiStock.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, AuditoriasUpdateDto dto)
         {
+            if (!MongoDB.Bson.ObjectId.TryParse(id, out _))
+                return BadRequest("Id inválido.");
+
             var existing = await _auditoriasRepo.GetByIdAsync(id);
 
             if (existing is null)
                 return NotFound();
 
             await _auditoriasRepo.UpdateAsync(dto, id);
+
             return NoContent();
         }
 
@@ -66,14 +71,16 @@ namespace OptiStock.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
+            if (!MongoDB.Bson.ObjectId.TryParse(id, out _))
+                return BadRequest("Id inválido.");
+
             var existing = await _auditoriasRepo.GetByIdAsync(id);
 
             if (existing is null)
-            {
                 return NotFound();
-            }
 
             await _auditoriasRepo.DeleteAsync(id);
+
             return NoContent();
         }
     }

@@ -16,9 +16,9 @@ namespace OptiStock.Schemas.Dtos.Auditorias
         public required string Entidad { get; set; }
         [BsonRepresentation(BsonType.String)]
         public required Guid IdEntidad { get; set; }
-        public object DatosAnteriores { get; set; } = null!;
-        public object DatosNuevos { get; set; } = null!;
-        public DateTime FechaEvento { get; set; } = DateTime.UtcNow.ToString("o") is string fecha ? DateTime.Parse(fecha) : DateTime.UtcNow;
+        public object DatosAnteriores { get; set; } = new();
+        public object DatosNuevos { get; set; } = new();
+        public DateTime FechaEvento { get; set; } = DateTime.UtcNow;
         public required string NombreGrupo { get; set; }
         [BsonRepresentation(BsonType.String)]
         public required Guid IdAutorizadoPor { get; set; }
